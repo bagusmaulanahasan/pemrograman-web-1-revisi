@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Catatan Simpel</title>
+</head>
+<body>
+    <h2>Catatan Saya</h2>
+    <input type="text" id="noteInput" placeholder="Tulis sesuatu...">
+    <button onclick="addNote()">Tambah</button>
+    
+    <ul id="noteList"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+____________________________
+
+// 1. Ambil data dari localStorage saat pertama kali buka
+let notes = JSON.parse(localStorage.getItem('myNotes')) || [];
+renderNotes();
+
+// Fungsi untuk menampilkan catatan ke layar
+function renderNotes() {
+    const list = document.getElementById('noteList');
+    list.innerHTML = ''; // Kosongkan daftar sebelum render ulang
+
+    notes.forEach((note, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            ${note} 
+            <button onclick="editNote(${index})">Edit</button>
+            <button onclick="deleteNote(${index})">Hapus</button>
+        `;
+        list.appendChild(li);
+    });
+
+    // Simpan perubahan ke localStorage setiap kali ada update
+    localStorage.setItem('myNotes', JSON.stringify(notes));
+}
+
+// Fungsi Tambah
+function addNote() {
+    const input = document.getElementById('noteInput');
+    if (input.value.trim() !== "") {
+        notes.push(input.value);
+        input.value = "";
+        renderNotes();
+    }
+}
+
+// Fungsi Edit menggunakan Prompt
+function editNote(index) {
+    const newVal = prompt("Edit catatan:", notes[index]);
+    if (newVal !== null && newVal.trim() !== "") {
+        notes[index] = newVal;
+        renderNotes();
+    }
+}
+
+// Fungsi Hapus
+function deleteNote(index) {
+    if (confirm("Yakin mau hapus?")) {
+        notes.splice(index, 1);
+        renderNotes();
+    }
+}
+
+
+____________________________
+
+// 1. Ambil data dari localStorage atau buat array kosong
+let notes = JSON.parse(localStorage.getItem('myNotes')) || [];
+renderNotes();
+
+function renderNotes() {
+    const list = document.getElementById('noteList');
+    list.innerHTML = ''; 
+
+    notes.forEach((note, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span>${note}</span>
+            <div>
+                <button class="btn-edit" onclick="editNote(${index})">Edit</button>
+                <button class="btn-delete" onclick="deleteNote(${index})">Hapus</button>
+            </div>
+        `;
+        list.appendChild(li);
+    });
+
+    // Simpan ke localStorage (Poin 1.e)
+    localStorage.setItem('myNotes', JSON.stringify(notes));
+}
+
+function addNote() {
+    const input = document.getElementById('noteInput');
+    if (input.value.trim() !== "") {
+        notes.push(input.value);
+        input.value = "";
+        renderNotes();
+    }
+}
+
+function editNote(index) {
+    const newVal = prompt("Edit tugas:", notes[index]);
+    if (newVal !== null && newVal.trim() !== "") {
+        notes[index] = newVal;
+        renderNotes();
+    }
+}
+
+function deleteNote(index) {
+    if (confirm("Hapus tugas ini?")) {
+        notes.splice(index, 1);
+        renderNotes();
+    }
+}
