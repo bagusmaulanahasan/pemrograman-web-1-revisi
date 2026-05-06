@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background: #f0f0f0;
+    background: #eaeaea;
     display: flex;
     justify-content: center;
     padding: 20px;
@@ -10,6 +10,7 @@ body {
     background: white;
     padding: 20px;
     border-radius: 8px;
+    text-align: center;
     width: 100%;
     max-width: 400px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -17,12 +18,12 @@ body {
 
 .input-group {
     display: flex;
-    gap: 5px;
+    flex-direction: column;
+    gap: 8px;
     margin-bottom: 20px;
 }
 
 input {
-    flex: 1;
     padding: 8px;
 }
 
@@ -49,13 +50,13 @@ li {
 }
 
 .btn-edit {
-    background: orange;
+    background: lightseagreen;
     color: white;
     margin-left: 10px;
 }
 
 .btn-delete {
-    background: red;
+    background: coral;
     color: white;
     margin-left: 5px;
 }
