@@ -1,0 +1,103 @@
+/* Pengaturan Dasar Body (Light Mode) */
+body {
+  color: #333333; /* Teks gelap agar mudah dibaca */
+  background: #fdfdfd; /* Latar belakang terang (putih pucat) */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  line-height: 1.6;
+}
+
+p:first-line { margin-left: 25px; }
+
+/* Box Puisi (Diubah menjadi kotak putih terang dengan bayangan lembut) */
+div.foo {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.05); Efek timbul tipis */
+}
+div.foo:first-line {
+  font-weight: bold;
+  margin-left: 30px;
+  color: #c0392b; /* Merah bata agar kontras di latar putih */
+}
+div:first-letter {
+  font-size: x-large;
+  color: #2c3e50; /* Gelap navy */
+}
+
+/* Daftar (Lists) */
+ul { padding-left: 20px; }
+ul ul li {
+  font-size: x-large;
+  font-style: italic; 
+}
+
+/* Heading dan Penekanan */
+h2 em { font-weight: 900; }
+h2.ex1 {
+  color: #27ae60; /* Hijau gelap */
+  line-height: 50px;
+  font-size: 40px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Bayangan sangat halus */
+}
+
+/* Kelas Funky */
+.funkyclass {
+  font: 28pt/32pt courier;
+  font-variant: small-caps;
+  border: 3px dashed #3498db;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#tagid1 {
+  padding: 10px;
+  border: 5px groove #bdc3c7; /* Abu-abu terang (sebelumnya putih) */
+  border-radius: 8px;
+}
+
+.class1, #tagid2 {
+  font-family: "comic sans ms", fantasy;
+  color: #d35400; /* Oranye gelap pengganti warna kuning neon */
+}
+
+/* Background elemen yang asalnya biru tua pekat, sekarang jadi biru pastel (soft) */
+h1, h2, div.class5, blockquote {
+  background: #eaf2f8; 
+  color: #2c3e50; /* Teks navy/gelap */
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid #d4e6f1; /* Border tipis agar lebih rapi */
+}
+
+/* Iklan Spesial */
+p.special {
+  font: 12pt/14pt sans-serif;
+  margin: 20px 0;
+  padding: 15px;
+  border: 2px dashed #e74c3c;
+  color: #333333;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.part1 {
+  font-size: xx-large;
+  color: #808000;
+}
+
+/* Disclaimer bawah */
+h5 {
+  font-size: 11pt !important;
+  color: #c0392b !important;
+  text-align: center;
+  border-top: 1px solid #dddddd;
+  padding-top: 15px;
+  margin-top: 40px;
+}

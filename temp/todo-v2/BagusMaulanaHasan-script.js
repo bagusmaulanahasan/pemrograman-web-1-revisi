@@ -11,7 +11,7 @@ const render = () => {
             <span class="todo-text">${n.text}</span>
             <div class="todo-actions">
                 <button class="btn-check ${n.done ? 'checked' : ''}" onclick="toggleDone(${i})" title="${n.done ? 'Batalkan' : 'Selesai'}">
-                    ${n.done ? '✓' : '✓'}
+                    ${n.done ? 'x' : 'v'}
                 </button>
                 <button class="btn-edit" onclick="editNote(${i})">Edit</button>
                 <button class="btn-delete" onclick="delNote(${i})">Hapus</button>
