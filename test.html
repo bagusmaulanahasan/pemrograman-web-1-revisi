@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 100%;
+        }
+
+        marquee>h1 {
+            color: red;
+        }
+
+        thead>tr>td {
+            font-weight: bold;
+        }
+
+        .rollOverImage>img {
+            height: 150px;
+            width: 100%;
+            margin: 30px 0;
+        }
+
+        /* CSS Automatic Calculation logic */
+        tbody>tr {
+            counter-reset: row-harga row-qty row-jumlah;
+        }
+
+        td.harga {
+            counter-increment: row-harga var(--harga);
+        }
+
+        td.harga::after {
+            content: counter(row-harga);
+        }
+
+        td.qty {
+            counter-increment: row-qty var(--qty);
+        }
+
+        td.qty::after {
+            content: counter(row-qty);
+        }
+
+        td.jumlah {
+            counter-increment: row-jumlah calc(var(--harga) * var(--qty));
+        }
+
+        td.jumlah::after {
+            content: counter(row-jumlah);
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <td width="10">No</td>
+                <td>Harga</td>
+                <td>QTY</td>
+                <td>Jumlah</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="--harga: 20000; --qty: 2;">
+                <td>1</td>
+                <td class="harga"></td>
+                <td class="qty"></td>
+                <td class="jumlah"></td>
+            </tr>
+            <tr style="--harga: 5000; --qty: 6;">
+                <td>2</td>
+                <td class="harga"></td>
+                <td class="qty"></td>
+                <td class="jumlah"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="rollOverImage">
+        <img src="../assets/images/candi-borobudur.png" alt="">
+    </div>
+
+    <marquee behavior="loop" direction="">
+        <h1>
+            Tabel Transaksi
+        </h1>
+    </marquee>
+
+    </form>
+</body>
+
+</html>
