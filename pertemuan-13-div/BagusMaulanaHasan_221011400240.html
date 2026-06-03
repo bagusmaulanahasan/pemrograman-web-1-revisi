@@ -1,0 +1,338 @@
+<html>
+
+<head>
+    <title>Tugas Lab</title>
+    <link rel="stylesheet" href="layout.css" type="text/css">
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+    }
+
+    #transaction-table {
+        width: 756px;
+    }
+
+    #transaction-table table {
+        width: 100%;
+    }
+
+    #transaction-table thead td {
+        font-weight: bold;
+    }
+
+    thead>tr {
+        background: linear-gradient(135deg, #0f766e, #0d9488);
+        color: white;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    tbody>tr {
+        counter-reset: row-harga row-qty row-jumlah;
+    }
+
+    td.harga {
+        counter-increment: row-harga var(--harga);
+    }
+
+    td.harga::after {
+        content: counter(row-harga);
+    }
+
+    td.qty {
+        counter-increment: row-qty var(--qty);
+    }
+
+    td.qty::after {
+        content: counter(row-qty);
+    }
+
+    td.jumlah {
+        counter-increment: row-jumlah calc(var(--harga) * var(--qty));
+    }
+
+    td.jumlah::after {
+        content: counter(row-jumlah);
+    }
+
+    #wrapper {
+        width: 756px;
+        background-color: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08);
+    }
+
+    #header {
+        height: 70px;
+        background: linear-gradient(135deg, #0f766e, #0d9488);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-container h1 {
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-container p {
+        font-size: 10px;
+        font-weight: 400;
+        color: #ccfbf1;
+        margin-top: 2px;
+    }
+
+    #inner {
+        display: flex;
+    }
+
+    #sidebar {
+        width: 180px;
+        height: 330px;
+        border-right: 1px solid #f1f5f9;
+        position: relative;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    #sidebar img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #sidebar img.img-hover {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+
+    #sidebar:hover img.img-hover {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    #sidebar:hover img.img-default {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    #inner2 {
+        flex: 1;
+        height: 330px;
+    }
+
+    #top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0;
+        background: #fafafa;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .top-headline {
+        font-size: 22px;
+        font-weight: 800;
+        color: #0f766e;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    #content {
+        float: left;
+        width: 367px;
+        height: 260px;
+        border-right: 1px solid #f1f5f9;
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    .content-article h2 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 8px;
+        display: inline-block;
+    }
+
+    .content-article h2::after {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 3px;
+        background-color: #0d9488;
+        border-radius: 2px;
+        margin-top: 4px;
+    }
+
+    .content-article p {
+        font-size: 11px;
+        color: #475569;
+        line-height: 1.7;
+        text-align: justify;
+        margin-top: 6px;
+    }
+
+    #right {
+        float: right;
+        width: 207px;
+        height: 260px;
+        padding: 20px;
+        background-color: #f8fafc;
+        overflow: hidden;
+    }
+
+    .sidebar-widget h3 {
+        font-size: 12px;
+        font-weight: 700;
+        color: #0f766e;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .sidebar-widget ul {
+        list-style: none;
+    }
+
+    .sidebar-widget ul li {
+        font-size: 11px;
+        font-weight: 500;
+        color: #475569;
+        padding: 6px 0;
+        border-bottom: 1px dashed #e2e8f0;
+        transition: all 0.2s ease;
+    }
+
+    .sidebar-widget ul li:hover {
+        color: #0d9488;
+        padding-left: 5px;
+    }
+
+    #footer {
+        height: 60px;
+        background-color: #404040;
+        display: flex;
+        align-items: center;
+        border-radius: 0 0 16px 16px;
+    }
+
+    #footer marquee {
+        width: 100%;
+    }
+
+    .marquee-text {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: #ffffff;
+    }
+</style>
+
+<body>
+    <div id="transaction-table">
+        <table border="1" cellspacing="0" cellpadding="5">
+            <thead>
+                <tr>
+                    <td>No</td>
+                    <td>Nama Barang</td>
+                    <td>Harga</td>
+                    <td>QTY</td>
+                    <td>Jumlah</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="--harga: 20000; --qty: 2;">
+                    <td>1</td>
+                    <td>Keychain Borobudur</td>
+                    <td class="harga">Rp</td>
+                    <td class="qty"></td>
+                    <td class="jumlah">Rp</td>
+                </tr>
+                <tr style="--harga: 25000; --qty: 3;">
+                    <td>2</td>
+                    <td>Sandal Tradisional</td>
+                    <td class="harga">Rp</td>
+                    <td class="qty"></td>
+                    <td class="jumlah">Rp</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="wrapper">
+        <div id="header">
+            <div class="header-container">
+                <h1>PESONA NUSANTARA</h1>
+                <p>Menjelajahi Keindahan Alam Indonesia yang Asri & Alami</p>
+            </div>
+        </div>
+        <div id="inner">
+            <div id="sidebar">
+                <img src="https://media.istockphoto.com/id/585488420/id/foto/patung-buddha-kuno-dan-stupa-di-candi-borobudur.jpg?s=1024x1024&w=is&k=20&c=snEZn06oJazD10jSlwZbTNwLUDcvmLvDqTFy8MVk3u0=" alt="Candi Borobudur" class="img-default">
+                <img src="../assets/images/penyihir-horror.png" alt="Penyihir Horror" class="img-hover">
+            </div>
+            <div id="inner2">
+                <div id="top">
+                    <h1 class="top-headline">Candi Borobudur</h1>
+                </div>
+                <div id="content">
+                    <article class="content-article">
+                        <h2>Deskripsi</h2>
+                        <p>Candi Borobudur adalah candi Buddha terbesar di dunia yang megah berdiri di Magelang, Jawa
+                            Tengah. Dikelilingi perbukitan hijau, nikmati pemandangan matahari terbit yang magis di atas
+                            stupa kuno bersejarah.</p>
+                    </article>
+                </div>
+                <div id="right">
+                    <aside class="sidebar-widget">
+                        <h3>Destinasi Populer</h3>
+                        <ul>
+                            <li>Gunung Bromo</li>
+                            <li>Pantai Kuta Bali</li>
+                            <li>Raja Ampat</li>
+                            <li>Danau Toba</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <marquee behavior="loop" direction="">
+                <span class="marquee-text">
+                    Nikmati pemandangan alam yang indah dan alami
+                </span>
+            </marquee>
+        </div>
+    </div>
+</body>
+
+</html>
