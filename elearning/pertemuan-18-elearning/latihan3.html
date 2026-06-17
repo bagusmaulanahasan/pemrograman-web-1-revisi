@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title>Animasi Kursor</title>
+  <style>
+    .spanstyle {
+      position: absolute;
+      visibility: visible;
+      top: -50px;
+      font-size: 12px;
+      font-family: Verdana, sans-serif;
+      color: black;
+      font-weight: bold;
+    }
+  </style>
+  <script>
+    let step = 20;
+    let message = "my cursor".split("");
+    let xpos = new Array(message.length).fill(-50);
+    let ypos = new Array(message.length).fill(-50);
+
+    function handlerMM(e) {
+      let x = e.clientX;
+      let y = e.clientY;
+
+      // geser posisi huruf
+      for (let i = message.length - 1; i >= 1; i--) {
+        xpos[i] = xpos[i - 1] + step;
+        ypos[i] = ypos[i - 1];
+      }
+      xpos[0] = x + step;
+      ypos[0] = y;
+
+      // update posisi span
+      for (let i = 0; i < message.length; i++) {
+        let span = document.getElementById("span" + i);
+        span.style.left = xpos[i] + "px";
+        span.style.top = ypos[i] + "px";
+      }
+    }
+
+    function init() {
+      // buat span huruf
+      let container = document.body;
+      for (let i = 0; i < message.length; i++) {
+        let span = document.createElement("span");
+        span.id = "span" + i;
+        span.className = "spanstyle";
+        span.textContent = message[i];
+        container.appendChild(span);
+      }
+      document.addEventListener("mousemove", handlerMM);
+    }
+  </script>
+</head>
+<body onload="init()">
+  Gerakan Mouse .....
+</body>
+</html>

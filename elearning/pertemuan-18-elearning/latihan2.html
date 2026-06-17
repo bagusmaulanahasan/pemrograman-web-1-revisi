@@ -1,0 +1,23 @@
+<html>
+<head>
+  <title>Teks Jalan</title>
+  <script>
+    let teks = " welcome my elearning     "; // spasi tambahan di akhir
+
+    function teksJalan() {
+      let pjteks = teks.length;
+      let ambil1 = teks.substring(1, pjteks);
+      let ambil2 = teks.substring(0, 1);
+      teks = ambil1 + ambil2;
+
+      // tampilkan ke elemen dengan id output
+      document.getElementById("output").innerText = teks;
+
+      setTimeout(teksJalan, 200);
+    }
+  </script>
+</head>
+<body onload="teksJalan()">
+  <div id="output" style="font-family:Verdana; font-size:16px; font-weight:bold;"></div>
+</body>
+</html>
